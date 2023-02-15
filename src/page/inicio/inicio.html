@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Head -->
+    <script src="../../components/head.js"></script>
+    <!-- Head-End -->
+    <!-- plugin css for this page -->
+    <link rel="stylesheet" href="../../vendors/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" href="../../vendors/jsgrid/jsgrid-theme.min.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <link rel="stylesheet" href="../../vendors/font-awesome/css/font-awesome.min.css">
+    <!-- End plugin css for this page -->
+    <link rel="stylesheet" scoped href="../../css/mis-capacitaciones/capacitaciones.css">
+    <!-- plugin css for this page -->
+    <link rel="stylesheet" href="../../vendors/jquery-toast-plugin/jquery.toast.min.css">
+
+    <link href="../../assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css">
+    <link href="../../assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css">
+    <link href="../../assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css">'
+    
+    
+    <link rel="stylesheet" href="../../css/capacitaciones/datepicker.css">
+    <link rel="stylesheet" href="../../css/capacitaciones/sesiones.css">
+
+    <link rel="stylesheet" href="../../vendors/js-datepicker/css/jquery-ui.css" type="text/css">
+    <link rel="stylesheet" href="../../vendors/js-datepicker/css/jquery-ui-timepicker-addon.min.css" type="text/css">
+
+    <link rel="stylesheet" href="../../vendors/dropify/dropify.min.css">
+    <link href="../../assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        a.disabled {
+           pointer-events: none;
+           cursor: default;
+       }
+       .select2-results__option {text-transform:capitalize}
+       .no-capitalize {text-transform:none !important}
+       #btnAddSesion:hover {
+            color: white !important;
+        }
+
+        .wizardOnly .form-group-default {
+            position: relative;
+            border: 1px solid rgba(33, 33, 33, 0.14);
+            border-top-color: rgba(8, 7, 7, 0.14);
+            border-radius: 2px;
+            padding-top: 5px;
+            padding-left: 9px;
+            padding-right: 9px;
+            padding-bottom: 4px;
+            overflow: hidden;
+            width: 100%;
+            -webkit-transition: background-color 0.2s ease;
+            transition: background-color 0.2s ease;
+            cursor: text;
+        }
+
+        .wizardOnly .full-width {
+            width: 100%;
+        }
+
+        .wizardOnly .select2-container .select2-selection.select2-selection--single {
+            height: 35px;
+        }
+
+        .wizardOnly .form-group-default .select2-container .select2-selection, .wizardOnly .select2-container-multi .select2-choices {
+            border-color: transparent;
+        }
+
+        .wizardOnly .select2-container .select2-selection {
+            background-image: none;
+            border-radius: 2px;
+            border: 1px solid rgba(33, 33, 33, 0.14);
+            padding: 2px 9px;
+            transition: border 0.2s linear 0s;
+            min-height: 35px;
+            display: flex;
+            align-items: center;
+        }
+
+        select.full-width + .select2-container {
+            width: 100% !important;
+        }
+
+        .wizardOnly .col-sm-9 {
+            flex: 0 0 75%;
+            max-width: 75%;
+        }
+                
+    </style>
+
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    <!-- End plugin css for this page -->
+    
+</head>
+
+<body class="sidebar-dark">
+    <!-- Modal general START-->
+    <div class="container-scroller">
+        <!-- Header -->
+        <script src="../../components/header.js"></script>
+        <!-- Header-End -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- Sidebar -->
+            <!-- Sidebar-End -->
+            <div class="main-panel" style="width: 100%;">
+
+                <div class="modal fade" id="p_modalDetalles" tabindex="-1" role="dialog"
+                    aria-labelledby="p_modalDetalles" aria-hidden="true">
+                    <div class="modal-dialog " role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabel">Participante</h4>
+                                <button class¡="my-auto" type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="padding-30 sm-padding-5" id="div_modalinfoColab">
+                  
+                                    <div class="form-group-attached mb-0">
+                                        <div class="row clearfix my-auto">
+                                            <div class="col-sm-12 my-auto">
+                                                <div class="form-group form-group-default ">
+                                                    <label>Nombre:</label>
+                                                    <label type="text" id="p_nombreField" name="p_nombreField"
+                                                        placeholder="Ingrese un nombre para la capacitación"
+                                                        class="form-control text-capitalize">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group-attached mb-0">
+                                        <div class="row clearfix my-auto">
+                                            <div class="col-sm-12 my-auto">
+                                                <div class="form-group form-group-default ">
+                                                    <label>Correo:</label>
+                                                    <label type="text" id="correoField" name="correoField"
+                                                    class="form-control" style="text-transform: none;">
+                                                    -mail-@gmail.com</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group-attached mb-2">
+                                        <div class="row clearfix my-auto">
+                                            <div class="col-sm-12 my-auto">
+                                                <div class="form-group form-group-default ">
+                                                    <label>Estado:</label>
+                                                <label type="text" id="estadoField" name="estadoField"
+                                                    class="form-control" style="text-transform: none;">Activo</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="p_modalEditParticipantes" tabindex="-1" role="dialog"
+                    aria-labelledby="p_modalDetalles" aria-hidden="true">
+                    <div class="modal-dialog modal-lg " role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabel">Editar Participantes</h4>
+                                <button class¡="my-auto" type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="padding-30 sm-padding-5" id="div_modalEditParticiapntes">
+   
+                                    <div class="form-group-attached mb-0">
+
+                                            <div class="form-group form-group-default">
+                                                <div class="row">
+                                                    <div class="col-xl-12">
+                                                        <label class="mb-2">Buscar
+                                                            Participantes</label>
+                                                        <div class="row clearfix">
+                                                            <div class="col-sm-9">
+                                                                <div
+                                                                    class="form-group form-group-default ">
+                                                                    <input type="text" autocomplete="off"
+                                                                        class="form-control typeahead"
+                                                                        id="shUsuarios">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <button aria-label=""
+                                                                        class="btn btn-dark btn-cons pull-right"
+                                                                        id="btn_search_participante"
+                                                                        type="button">
+                                                                        <span>Buscar</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row wizardOnly">
+                                                            <div class="col-sm-9">
+                                                                <div class="form-group form-group-default text-capitalize">
+                                                                    <select class="full-width text-capitalize"
+                                                                        data-init-plugin="select2"
+                                                                        id="selectUsuarios">
+                                                                        <option value="-1">Sin
+                                                                            usuarios</option>
+                                                                        <select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <button aria-label=""
+                                                                        class="btn btn-primary btn-cons pull-right "
+                                                                        id="btn_add"
+                                                                        type="button">
+                                                                        <span>Agregar</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="card-title my-4">
+                                                            Participantes:
+                                                        </div>
+                                                        <div id="table-participantesDiv" style="max-height: 500px;overflow: auto;">
+                                                            <table class="table table-condensed"
+                                                            id="table-participantes">
+                                                                <tr>
+                                                                    <td class="col-lg-8 col-md-6 col-sm-7"
+                                                                        style="text-align: center;">
+                                                                        <span
+                                                                            class="m-l-10 fs-11 all-caps mb-3">Sin
+                                                                            Participantes</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        <button type="button" onclick="guardarParticipantes()" style="" class="btn btn-primary btn-lg btn-block">Guardar</button>
+                             
+                                    </div>
+                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="p_modalEditarSesiones" tabindex="-1" role="dialog" aria-labelledby="p_modalEditarSesiones" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabel">Editar Sesiones</h4>
+                                <button class¡="my-auto" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row row-same-height">
+                                    <div class="col-md-12">
+                                        <div class="padding-30 sm-padding-5 ">
+                                            <form role="form" id="frm-config-sesiones" autocomplete="off">
+                                                <div class="card-title"></div>
+                                                <div class="form-group-default" id="row_sesiones" style="min-height: 400px; max-height: 700px;overflow: auto;">
+                                                    
+                                                </div>
+                                            </form>
+                                            <br />
+                                            <button type="button" onclick="addSession()" id="btnAddSesion" style="color: #ff3700;" class="btn btn-outline-primary btn-lg btn-block">+ Agregar sesion</button>
+                                            <button type="button" onclick="guardarSesiones()" style="" class="btn btn-primary btn-lg btn-block">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- content-wrapper -->
+                <div class="content-wrapper">
+                    <div class="mt-4">
+                        <div class="">
+                            <div id="loader-overlay" style="z-index: 9999;" class="overlay">
+                                <div class="">
+                                    <div class="col-md-4 col-sm-6 grid-margin stretch-card m-auto">
+                                        <div class="loader-container">
+                                            <div class="jumping-dots-loader loader-h">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ml-1">
+                                <h3 class="card-title">Bienvenidos.</h3>
+                                <p class="card-description">Sistema de formaciones de ArcelorMittal.</p>
+                            </div>
+
+                            <div class="mt-4">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card px-4 pt-3  mb-1">
+                                            <ul class="nav nav-pills nav-pills-dark" id="pills-tab" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="pills-asistencia-tab"
+                                                        data-toggle="pill" href="#pills-asistencia" role="tab"
+                                                        aria-controls="pills-asistencia"
+                                                        aria-selected="true">Asistencia</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="pills-Evaluaciones-tab" data-toggle="pill"
+                                                        href="#pills-Evaluaciones" role="tab"
+                                                        aria-controls="pills-Evaluaciones"
+                                                        aria-selected="false">Evaluaciones</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="pills-Material-tab" data-toggle="pill"
+                                                        href="#pills-Material" role="tab"
+                                                        aria-controls="pills-Material"
+                                                        aria-selected="false">Material</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="tab-content mt-2" id="pills-tabContent"
+                                            style="border: 0px;padding: 0px;">
+
+                                            <div class="tab-pane fade active show" id="pills-asistencia" role="tabpanel"
+                                                aria-labelledby="pills-asistencia-tab">
+                                                <div class="row">
+                                                    <div class="col-lg-9 col-sm-push-12">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div id="js-grid-asistencia" class="pt-3 text-center mb-0">
+                                                                </div>
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-icon-text m-auto mx-auto text-center mb-5"
+                                                                    disabled id="btnGuardar"><i
+                                                                    class="mdi mdi-content-save                                                                    ml-2 "></i>
+                                                                    Guardar  </button>
+
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-icon-text m-auto"
+                                                                    id="btnFinalizarCapa"><i
+                                                                    class="mdi mdi-exit-to-app ml-2 "></i>
+                                                                    Finalizar Formación </button>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class=" pl-0 col-lg-3 col-sm-pull-12">
+                                                        <div class="row">
+                                                            <div style="list-style-type: none;overflow-x: hidden; overflow-y: auto; max-height:80vh;"
+                                                                class="m-auto text-center col-12" id="sesionesDiv">
+
+                                                            </div>
+                                                            <div class="col-6" style="margin-top: 10px;">
+                                                                <button type="button" id="editarSesiones_" class="btn btn-primary btn-icon-text m-auto"><i class="mdi mdi-exit-to-app ml-2 "></i>
+                                                                    Editar Sesiones </button>
+                                                            </div>
+                                                            <div class="col-6" style="margin-top: 10px;">
+                                                                <button type="button" id="editarParticiapantes_" class="btn btn-primary btn-icon-text m-auto"><i class="mdi mdi-exit-to-app ml-2 "></i>
+                                                                    Editar Participantes </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-Evaluaciones" role="tabpanel"
+                                                aria-labelledby="pills-Evaluaciones-tab">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-sm-pull-12">
+                                                        <div class="card" style="height: 100%;">
+                                                            <div class="card-body">
+                                                                <div style="list-style-type: none;overflow-x: hidden; overflow-y: auto; max-height:80vh;"
+                                                                    class="m-auto text-center" id="sesionesDiv">
+                                                                    <div class="form-group-attached mt-4">
+                                                                        <div class="row clearfix">
+                                                                            <div class="col-sm-12">
+                                                                                <div
+                                                                                    class="form-group form-group-default ">
+                                                                                    <div style="text-align: left;">
+                                                                                        <label class="font-weight-bold">Medio de
+                                                                                            evaluación:</label>
+                                                                                    </div>
+                                                                                    <label type="text"
+                                                                                        id="labelMedioEvalucionText"
+                                                                                        class="form-control text-left"
+                                                                                        style="text-transform: none;">
+                                                                                        asd@gmail.com</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div
+                                                                                    class="form-group form-group-default ">
+                                                                                    <div style="text-align: left;">
+                                                                                        <label class="font-weight-bold">Aprobación de
+                                                                                            curso:</label>
+                                                                                    </div>
+                                                                                    <label type="text"
+                                                                                        id="labelAprovacionCursoText"
+                                                                                        class="form-control text-left"
+                                                                                        style="text-transform: none;height: fit-content;">Activo</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-8 col-sm-push-12">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div id="js-grid-evaluacion" class="pt-3 text-center">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-Material" role="tabpanel"
+                                                aria-labelledby="pills-Material-tab">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-sm-push-12">
+
+                                                        <div class="card card-default mouduloEvaluaciones">
+                                                            <div class="card-body ">
+                                                                <div class="card-title">
+                                                                    Importar documento de evaluación(Excel)
+                                                                </div>
+                                                                <small id="info-dataEval-1">La formación actual ya cuenta con un documento de evaluación.</small>
+                                                                <small id="info-dataEval-2">Agregar un nuevo documento remplazara el original. Esto también reiniciara cualquier nota asignada a los estudiantes</small>
+                                                                <div class="tools">
+                                                                </div>
+                                                                <div class="body">
+                                                                    <div class="" id="inputArchivoEvaluacion" >
+                                                                        <input  type="file" id="file-xlsx-evaluacionMedio" class="dropify" data-height="150" required=""
+                                                                            data-allowed-file-extensions="xlsx" />
+                                                                    </div>
+                                                                    <a class="mt-2" id="machoteLink" href="https://www.soundczech.cz/temp/lorem-ipsum.pdf" target="_blank"> Descargar Plantilla </a>
+                                                                   
+                                                                </div>
+                                                                <br>
+                                                                    <button id="btn_actualizarEval" class="btn btn-raised btn-primary btn-round waves-effect" type="button">Guardar Evaluacion</button>
+                                                                 
+                                                            </div>
+            
+                                                            
+                                                        </div>
+                                                        
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="body">
+                                                                    <form action="/" enctype="multipart/form-data" method="POST">
+                                                                        <div class="dropzone" id="my-dropzone" name="mainFileUploader">
+                                                                            <div class="fallback">
+                                                                                <input name="file" type="file" multiple id="archivos" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                    <br>
+                                                                    <button id="btn_actualizarArchivos" class="btn btn-raised btn-primary btn-round waves-effect" type="button">Guardar</button>
+                                                              
+                                                                </div>
+                                                                
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3  mb-1">
+                                            <div class="col-12">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- content-wrapper ends -->
+
+                <!-- Footer -->
+                <footer class="footer">
+                    <script src="../../components/footer.js"></script>
+                    <script src="../../js/_helpers/_updateAccessInfo.js"></script>
+                </footer>
+                <!-- Footer-End -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="../../vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="../../js/moment.min.js"></script>
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/template.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="../../assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+
+  <!-- dropify-->
+	<script src="../../vendors/jquery-file-upload/jquery.uploadfile.min.js"></script>
+	<script src="../../js/jquery-file-upload.js"></script>
+	<script src="../../vendors/dropify/dropify.min.js"></script>
+	<script src="../../js/dropify.js"></script>
+
+    <!-- plugin js for this page -->
+    <script src="../../vendors/jquery-toast-plugin/jquery.toast.min.js"></script>
+    <script src="../../js/desktop-notification.js"></script>
+
+    <script src="../../vendors/sweetalert/sweetalert.min.js"></script>
+    <script src="../../vendors/jquery.avgrund/jquery.avgrund.min.js"></script>
+
+    <script src="../../vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="../../assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="../../vendors/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
+    <script src="../../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
+    <script src="../../vendors/js-datepicker/js/jquery-ui.js"></script>
+    <script src="../../vendors/js-datepicker/js/jquery.datetimepicker.full.min.js"></script>
+    <script src="../../vendors/js-datepicker/js/jquery-ui-timepicker-addon.min.js"></script>
+
+
+    <script type="text/javascript" src="../../assets/plugins/select2/js/select2.js"></script>
+    <!-- End plugin js for this page -->    
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <script type="text/javascript" src="../../js/dropzoneConfig.js"></script>
+    <script type="text/javascript" src="../../assets/plugins/sheetjs/xls.js"></script>
+    
+    <script type="text/javascript" src="../../js/inicio/js-grid-asistencia.js"></script>
+    <script type="text/javascript" src="../../js/inicio/api-inicio.js"></script>
+    <script type="text/javascript" src="../../js/inicio/inicio.js"></script>
+
+    
+
+    
+    <!-- END API Gateway -->
+    <!-- plugin js for this page -->
+    <script src="../../vendors/jsgrid/jsgrid.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+
+    <script src="../../js/db.js"></script>
+    <!-- End custom js for this page-->
+    <script>
+        $(document).ready(function () {
+            $("#js-grid-static").jsGrid({
+                rowClick: function (args) {
+                    var target = $(args.item);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

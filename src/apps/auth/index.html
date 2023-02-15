@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ArcelorMittal</title>
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
+    <link rel="shortcut icon" href="../../images/arcelormittal-mini-logo.jpeg" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div id="loader-overlay" class="overlay">
+                <div class="">
+                    <div class="col-md-4 col-sm-6 grid-margin stretch-card m-auto">
+                        <div class="loader-container">
+                            <div class="jumping-dots-loader loader-h">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-wrapper d-flex align-items-center auth px-0">
+                <div class="row w-100 mx-0">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                            <div class="brand-logo text-center mb-5">
+                                <img class="mt-4 mb-3" src="../../images/logo-white.png" alt="logo">
+                                <h5 class="mt-3">Sistema de Formaciones</h5>
+                            </div>
+                            <h4 class="mt-3">Instructores</h4>
+                            <h6 class="font-weight-light">Ingrese los datos para continuar.</h6>
+                            <div id="formIngreso">
+                                <form class="pt-3">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control form-control-lg frm-bigger"
+                                            id="username" placeholder="Correo">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-lg frm-bigger"
+                                            id="password" placeholder="Contraseña">
+                                    </div>
+                                    <div class="form-group">
+                                        <h6 class="font-weight-light"> <input type="checkbox" onclick="showPassword()">
+                                            &nbsp;Ver Constraseña
+                                        </h6>
+                                    </div>
+                                    <div class="mt-3">
+                                        <a class="btn btn-block btn-dark btn-lg font-weight-medium auth-form-btn"
+                                            id="btn_ingresar" style="color: white;">INGRESAR</a>
+                                    </div>
+                                    <div class="my-2 d-flex justify-content-between align-items-center">
+                                    </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../js/template.js"></script>
+    <script>
+        function showPassword() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+    <script src="../../components/footer.js"></script>
+    <script src="../../js/log-in/api-login.js"></script>
+    <script src="../../js/log-in/login.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#username').focus().keypress(function (event) {
+                if (event.keyCode === 13) {
+                    $('#password').focus();
+                }
+            });
+            $('#password').keypress(function (event) {
+                if (event.keyCode === 13) {
+                    // window.ChatApp.login();
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>

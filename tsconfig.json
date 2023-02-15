@@ -1,9 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "target": "es2020",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "WebWorker"
+    ],
     "moduleResolution": "Node",
     "strict": true,
     "resolveJsonModule": true,
@@ -13,7 +19,37 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true
+    "declaration": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": false,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "typeRoots": [
+      "./node_modules/@types",
+      "vite/client"
+    ],
+    "types": [
+      "jquery"
+    ],
+    "checkJs": false,
+    "baseUrl": "src/",
+    "skipLibCheck": true,
+    "outDir": "./dist",
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/**/*.tsx",
+    "env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+  ]
 }
