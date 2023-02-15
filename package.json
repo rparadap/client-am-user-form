@@ -1,0 +1,48 @@
+{
+  "name": "client-am-user-form",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173",
+    "stg": "vite --port 8000",
+    "lint": "npx eslint ./src/**/*.ts --fix",
+    "build": "export NODE_OPTIONS=--max-old-space-size=16096 && vite build --mode development",
+    "build-ws": "set NODE_OPTIONS=--max-old-space-size=16096 && vite build --mode development",
+    "preview": "vite preview",
+    "typecheck": "tsc",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@rollup/plugin-inject": "^5.0.3",
+    "@types/bootstrap": "^5.2.6",
+    "@types/jquery": "^3.5.14",
+    "@types/node": "^18.11.17",
+    "@types/uuid": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "babel-preset-solid": "^1.6.10",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
+    "prettier": "2.8.1",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.3",
+    "vite-plugin-progress": "^0.0.6",
+    "vite-plugin-solid": "^2.5.0"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "amazon-cognito-identity-js": "^6.1.1",
+    "axios": "^1.2.1",
+    "dotenv": "^16.0.3",
+    "jquery": "^3.6.3",
+    "moment": "^2.29.4",
+    "sass": "^1.57.1",
+    "solid-js": "^1.6.10",
+    "sweetalert2": "^11.4.8",
+    "tui-calendar": "^1.15.3",
+    "uuid": "^9.0.0"
+  }
+}
