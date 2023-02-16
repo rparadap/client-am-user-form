@@ -6,7 +6,7 @@ export function isUserLoggedIn() {
   try {
     const localData = localStorage.getItem('user-local-data');
 
-    return localData ? true : true;
+    return localData ? true : false;
   } catch (error) {
     return false;
   }
