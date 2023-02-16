@@ -3,45 +3,49 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "target": "es2020",
-    "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": [
       "ESNext",
       "DOM",
       "WebWorker"
     ],
-    "moduleResolution": "Node",
-    "strict": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "esModuleInterop": true,
     "noEmit": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
     "declaration": true,
+    "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": false,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "typeRoots": [
       "./node_modules/@types",
-      "vite/client"
+      "vite/client",
     ],
     "types": [
       "jquery"
     ],
     "checkJs": false,
+    "moduleResolution": "node",
     "baseUrl": "src/",
     "skipLibCheck": true,
     "outDir": "./dist",
+    "paths": {
+      // "@components/*": [
+      //   "custom-components/*"
+      // ]
+    }
   },
   "include": [
     "src/**/*.ts",
@@ -49,7 +53,12 @@
     "env.d.ts"
   ],
   "exclude": [
+    "src/js/**/*.js",
+    "src/vendors/**/*.js",
+    "**/*.js",
     "node_modules",
+    "build",
     "dist",
+    "src/**/*.js",
   ]
 }

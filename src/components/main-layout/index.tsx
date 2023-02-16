@@ -7,17 +7,13 @@ import FooterComponent from './footer-component';
 import HeadComponent from './head-component';
 import HeaderComponent from './header-component';
 import LoaderComponent from './loader-component';
-import SidebarComponent from './sidebar-component';
-import { GlobalUserProvider } from './components/global-user-context';
 
 const HEADER_CUSTOM_ELEMENT = 'custom-header';
-const SIDEBAR_CUSTOM_ELEMENT = 'custom-sidebar';
 const FOOTER_CUSTOM_ELEMENT = 'custom-footer';
 const LOADER_CUSTOM_ELEMENT = 'custom-loader';
 export class MainLayout {
   constructor() {
     this.init();
-    $('#kt_body').fadeIn();
     this.renderComponents();
   }
 
@@ -27,7 +23,6 @@ export class MainLayout {
       this.renderHeader();
       this.renderFooter();
       this.renderLoader();
-      this.renderSidebar();
     }
   }
 
@@ -45,22 +40,7 @@ export class MainLayout {
     const headerContainer = document.getElementsByTagName(
       HEADER_CUSTOM_ELEMENT
     )[0];
-    headerContainer &&
-      render(
-        () => (
-          <GlobalUserProvider>
-            <HeaderComponent />
-          </GlobalUserProvider>
-        ),
-        headerContainer
-      );
-  }
-
-  private renderSidebar() {
-    const sidebarContainer = document.getElementsByTagName(
-      SIDEBAR_CUSTOM_ELEMENT
-    )[0];
-    sidebarContainer && render(() => <SidebarComponent />, sidebarContainer);
+    headerContainer && render(() => <HeaderComponent />, headerContainer);
   }
 
   private renderFooter() {

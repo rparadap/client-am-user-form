@@ -1,7 +1,9 @@
 // vite.config.js
+// import progress from "vite-plugin-progress";
 import { resolve } from "path";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import glob from "glob";
+import inject from "@rollup/plugin-inject";
 import solidPlugin from "vite-plugin-solid";
 
 export default defineConfig(({ command, mode }) => {
@@ -10,14 +12,30 @@ export default defineConfig(({ command, mode }) => {
   return {
     root,
     plugins: [solidPlugin()],
+    worker: {
+      rollupOptions: { treeshake: false },
+    },
     build: {
       target: "esnext",
-      minify: true,
+      minify: false,
+      // manifest: true,
       reportCompressedSize: true,
       outDir,
       emptyOutDir: true,
       cssCodeSplit: true,
       rollupOptions: {
+        // plugins: [
+        //   // Add it first
+        //   inject({
+        //     $: "jquery",
+        //     jQuery: "jquery",
+        //     moment: "moment",
+        //     exclude: ["src/server/**/*.js"],
+        //   }),
+        //   // progress(),
+        //   // Other plugins...
+        // ],
+        treeshake: false,
         input: [...glob.sync(resolve(__dirname, "src/**/*.{html,js,css}"))],
         preserveEntrySignatures: true,
         output: {

@@ -1,10 +1,4 @@
-import {
-  CognitoUserPool,
-  CognitoUserSession,
-  ICognitoUserPoolData,
-} from 'amazon-cognito-identity-js';
 import axios, { AxiosInstance } from 'axios';
-import { CognitoUserPoolData } from '../../service/cognito-user-pool';
 import {
   APIService,
   serviceLibrary,
@@ -14,10 +8,6 @@ import { CustomIncommingRequest, IncommingRequest } from './types';
 
 export class API {
   private axiosInstance: AxiosInstance;
-
-  public token: string;
-
-  public poolData: ICognitoUserPoolData;
 
   private mainAPI: APIService;
 
@@ -29,8 +19,6 @@ export class API {
   }
 
   private async init() {
-    this.poolData = this.getPoolData();
-    this.token = await this.getUserToken();
     this.axiosInstance = this.getAxiosIsntance(this.mainAPI);
   }
 
@@ -40,7 +28,7 @@ export class API {
     return axios.create({
       baseURL,
       timeout: 30000,
-      headers: { Authorization: this.token || '', accept: ' application/json' },
+      headers: { accept: ' application/json' },
     });
   }
 
@@ -53,36 +41,7 @@ export class API {
     return service.url;
   }
 
-  private getPoolData() {
-    const poolData = CognitoUserPoolData[this.env];
-    if (!poolData) throw 'Missing cognito pool data';
-
-    return poolData;
-  }
-
-  private getUserToken(): Promise<string> {
-    return new Promise((resolve) => {
-      const userPool = new CognitoUserPool(this.poolData);
-      const user = userPool.getCurrentUser();
-      if (!user) {
-        resolve('');
-
-        return;
-      }
-      user.getSession(function (
-        error: Error | null,
-        session: CognitoUserSession
-      ) {
-        if (!error) resolve(session.getIdToken().getJwtToken());
-      });
-    });
-  }
-
   public async request(data: IncommingRequest) {
-    if (!this.token) {
-      await this.init();
-    }
-
     return this.axiosInstance({
       method: data.method,
       url: data.url,
@@ -92,9 +51,6 @@ export class API {
   }
 
   public async customRequest(data: CustomIncommingRequest) {
-    if (!this.token) {
-      await this.init();
-    }
     const baseURL = this.getBaseURL(data.api);
 
     return axios({

@@ -1,3 +1,4 @@
+src/vendors
+src/js
 node_modules
 dist
-template

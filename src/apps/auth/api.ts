@@ -3,7 +3,6 @@
 import { API } from '../../components/app-base/api-base';
 
 export class LoginAPI extends API {
-
   constructor() {
     super('user');
   }

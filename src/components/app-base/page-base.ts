@@ -1,35 +1,49 @@
+// CSS clases
+import '../../vendors/mdi/css/materialdesignicons.min.css';
+import '../../vendors/flag-icon-css/css/flag-icon.min.css';
+import '../../vendors/css/vendor.bundle.base.css';
+import '../../css/vertical-layout-light/style.css';
+import '../../css/vertical-layout-light/scrollbar.css';
+
 import Swal from 'sweetalert2';
 
 export class Page {
-  private swal;
+  private swalWithBootstrapButtons;
 
   constructor() {
-    this.swal = Swal;
-    this.swal.mixin({
-      allowOutsideClick: false,
-      allowEscapeKey: false,
-      showCancelButton: false,
-      confirmButtonText: 'OK',
+    this.swalWithBootstrapButtons = this.setCustomButtons();
+    this.initMainEvents();
+  }
+
+  private initMainEvents() {
+    $('body').fadeIn(800, function () {
+      $('.main-panel').fadeIn(50);
+    });
+  }
+
+  private setCustomButtons() {
+    return Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger',
+      },
       buttonsStyling: false,
-      customClass: {},
     });
   }
 
   public showLoadingScreen() {
-    document.body.classList.add('page-loading');
-    document.body.setAttribute('data-kt-app-page-loading', 'on');
+    $('#loader-overlay').fadeIn(500);
   }
 
   public hideLoadingScreen() {
-    document.body.classList.remove('page-loading');
-    document.body.removeAttribute('data-kt-app-page-loading');
+    $('#loader-overlay').fadeOut(500);
   }
 
   public pageRedirect(url: string) {
     window.location.href = url;
   }
 
-  public logger(error: Error | string | unknown) {
+  public logger(error: any) {
     if (import.meta.env.VITE_ENV === 'dev') {
       // eslint-disable-next-line no-console
       console.log(JSON.stringify(error));
@@ -37,23 +51,23 @@ export class Page {
   }
 
   showWarningAlert({
-    message,
+    errorMessage,
     url,
     loaderException,
   }: {
-    message: string;
+    errorMessage: string;
     url?: string;
     loaderException?: boolean;
   }) {
-    this.swal
+    this.swalWithBootstrapButtons
       .fire({
         title: 'Alerta',
-        text: message,
+        text: errorMessage,
         icon: 'warning',
-        customClass: {
-          confirmButton: 'btn btn-warning',
-          cancelButton: 'btn btn-secondary',
-        },
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        showCancelButton: false,
+        confirmButtonText: 'OK',
       })
       .then((value) => {
         if (value.isConfirmed) {
@@ -66,23 +80,23 @@ export class Page {
   }
 
   showErrorAlert({
-    message,
+    errorMessage,
     url,
     loaderException,
   }: {
-    message: string;
+    errorMessage: string;
     url?: string;
     loaderException?: boolean;
   }) {
-    this.swal
+    this.swalWithBootstrapButtons
       .fire({
         title: 'Error',
-        text: message,
+        text: errorMessage,
         icon: 'error',
-        customClass: {
-          confirmButton: 'btn btn-danger',
-          cancelButton: 'btn btn-secondary',
-        },
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        showCancelButton: false,
+        confirmButtonText: 'OK',
       })
       .then((value) => {
         if (value.isConfirmed) {
@@ -95,52 +109,23 @@ export class Page {
   }
 
   showSuccessAlert({
-    message,
+    successMessage,
     url,
     loaderException,
   }: {
-    message: string;
+    successMessage: string;
     url?: string;
     loaderException?: boolean;
   }) {
-    this.swal
+    this.swalWithBootstrapButtons
       .fire({
         title: 'Exito',
-        text: message,
+        text: successMessage,
         icon: 'success',
-        customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-secondary',
-        },
-      })
-      .then((value) => {
-        if (value.isConfirmed) {
-          !loaderException && this.hideLoadingScreen();
-          url && this.pageRedirect(url);
-
-          return;
-        }
-      });
-  }
-
-  showInfoAlert({
-    message,
-    url,
-    loaderException,
-  }: {
-    message: string;
-    url?: string;
-    loaderException?: boolean;
-  }) {
-    this.swal
-      .fire({
-        title: 'Alerta',
-        text: message,
-        icon: 'info',
-        customClass: {
-          confirmButton: 'btn btn-info',
-          cancelButton: 'btn btn-secondary',
-        },
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        showCancelButton: false,
+        confirmButtonText: 'OK',
       })
       .then((value) => {
         if (value.isConfirmed) {

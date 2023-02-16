@@ -1,6 +1,8 @@
+import { isUserLoggedIn } from '../../shared/user-session-managment';
 import { Page } from '../../components/app-base/page-base';
 import { LoginAPI } from './api';
 import { LoginServices } from './services';
+import $ from 'jquery';
 
 const HOME_PATH = '../home/index.html';
 window.addEventListener('load', async () => {
@@ -9,7 +11,7 @@ window.addEventListener('load', async () => {
     LoginPage.init();
   } catch (error) {
     LoginPage.logger(error);
-    LoginPage.showErrorAlert({ message: 'Error Inesperado' });
+    LoginPage.showErrorAlert({ errorMessage: 'Error Inesperado' });
   }
 });
 export class LoginMain extends Page {
@@ -41,7 +43,7 @@ export class LoginMain extends Page {
     this.loginBtn.on('click', () => {
       this.login();
     });
-    $('#password').on('keypress', (event) => {
+    $('#password').on('keypress', (event: any) => {
       if (event.keyCode === 13) {
         this.login();
       }
@@ -67,58 +69,16 @@ export class LoginMain extends Page {
   public async login() {
     this.showLoadingScreen();
     if (!this.checkLoginData()) {
-      this.showErrorAlert({ message: 'Informacion invalida' });
+      this.showErrorAlert({ errorMessage: 'Informacion invalida' });
 
       return;
     }
     try {
-      const result = await this.api.login({
-        username: this.username,
-        password: this.password,
-      });
-      if (result.response === 'VALID') {
-        if (result.data.accessToken.payload.username) {
-          this.username = result.data.accessToken.payload.username;
-          this.getUserInformation();
-        } else {
-          throw 'Missing cognito username';
-        }
-      }
-      if (result.response === 'NEW_PASSWORD') {
-        this.userAttributes = result.data;
-        delete this.userAttributes.email_verified;
-        $('#formIngreso').fadeOut('fast', function () {
-          $('#formNewPass').fadeIn('slow');
-        });
-        this.hideLoadingScreen();
-      }
+      // TODO
     } catch (error) {
       localStorage.clear();
-      this.showErrorAlert({ message: 'Erorr al realizar login' });
+      this.showErrorAlert({ errorMessage: 'Erorr al realizar login' });
       this.logger(error);
-    }
-  }
-
-  private async getUserInformation() {
-    try {
-      const userInformation: any = await this.api.getUserInformation(
-        this.username
-      );
-      const isUserDataValid = this.services.manageUserData(userInformation);
-      if (!isUserDataValid) {
-        this.showErrorAlert({
-          message: 'Ha ocurrido un error con la información del colaborador. ',
-        });
-        logoutService();
-      }
-      setTimeout(() => {
-        window.location.href = HOME_PATH;
-      }, 1000);
-    } catch (error) {
-      this.logger(error);
-      this.showErrorAlert({
-        message: 'Error al almacenar la información del usuario',
-      });
     }
   }
 }

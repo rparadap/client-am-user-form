@@ -9919,16 +9919,12 @@ pre code {
   .container {
     max-width: 540px;
   }
-
-  0
 }
 
 @media (min-width: 768px) {
   .container {
     max-width: 720px;
   }
-
-  0
 }
 
 @media (min-width: 992px) {
@@ -10403,8 +10399,6 @@ pre code {
   .offset-sm-11 {
     margin-left: 91.66667%;
   }
-
-  0
 }
 
 @media (min-width: 768px) {
@@ -10589,8 +10583,6 @@ pre code {
   .offset-md-11 {
     margin-left: 91.66667%;
   }
-
-  0
 }
 
 @media (min-width: 992px) {
@@ -21719,7 +21711,7 @@ a.text-dark:focus {
   }
 
   abbr[title]::after {
-    content: " ("attr(title) ")";
+    content: " (" attr(title) ")";
   }
 
   pre {
@@ -23300,10 +23292,12 @@ code {
   color: #fbbc06;
   border: 1px solid #fbbc06;
 }
-.badge-outline-gray  {
+
+.badge-outline-gray {
   color: #bdbdbd;
   border: 1px solid #bdbdbd;
 }
+
 .badge-outline-danger {
   color: #ff3366;
   border: 1px solid #ff3366;
@@ -32650,7 +32644,7 @@ div.tagsinput span.tag a {
 
 .main-panel {
   transition: width 0.25s ease, margin 0.25s ease;
-  width: calc(100% - 239px);
+  width: 100%;
   min-height: calc(100vh - 59px);
   display: -webkit-flex;
   display: flex;
@@ -32988,8 +32982,6 @@ div.tagsinput span.tag a {
   .sidebar-offcanvas.active {
     right: 0;
   }
-
-  0
 }
 
 /* Navbar */
@@ -35934,9 +35926,6 @@ div.tagsinput span.tag a {
   top: 45vh;
 }
 
-body {
-  display: none;
-}
 
 .profile_img {
   object-fit: cover;
@@ -36031,9 +36020,27 @@ body {
   left: 0;
 }
 
+.table-resumen-titulo {
+  color: #ffffff !important;
+  background-color: rgba(92, 127, 146);
+  position: -webkit-sticky;
+  /* for Safari */
+  position: sticky;
+  left: 0;
+}
+
 .table-area-info {
   color: #000000 !important;
   background-color: #e3ded3;
+  position: -webkit-sticky;
+  /* for Safari */
+  position: sticky;
+  left: 0;
+}
+
+.table-resumen-info {
+  color: #000000 !important;
+  background-color: #bac6cc;
   position: -webkit-sticky;
   /* for Safari */
   position: sticky;
@@ -36122,16 +36129,17 @@ body {
   border: 2px solid #00eb00 !important
 }
 
-.departamento-lista-element{
+.departamento-lista-element {
   cursor: pointer;
   background-color: white;
   border-radius: 15px;
 }
 
-.departamento-lista-element-selecte{
+.departamento-lista-element-selecte {
   background-color: #f2f2f2;
 }
-.wizardColaboradores{
+
+.wizardColaboradores {
   min-height: 35em !important;
 }
 

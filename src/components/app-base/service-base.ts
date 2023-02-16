@@ -1,5 +1,3 @@
-import { User } from 'entities/User';
-
 export class Services {
   private readonly localDataUpdatedEvent = new Event(
     'localDataUpdated'
@@ -30,7 +28,7 @@ export class Services {
     });
   }
 
-  public updateUserLocalStorageUserData(data: User) {
+  public updateUserLocalStorageUserData(data: any) {
     const localData = JSON.parse(localStorage.getItem('user-local-data') || '');
     const updatedData = { ...localData, ...data };
     localStorage.setItem('user-local-data', JSON.stringify(updatedData));
