@@ -1,6 +1,5 @@
 import { isUserLoggedIn } from '../../shared/user-session-managment';
 import { Page } from '../../components/app-base/page-base';
-import { LoginAPI } from './api';
 import { LoginServices } from './services';
 import $ from 'jquery';
 
@@ -15,8 +14,6 @@ window.addEventListener('load', async () => {
   }
 });
 export class LoginMain extends Page {
-  private api;
-
   public services;
 
   private username: string;
@@ -29,7 +26,6 @@ export class LoginMain extends Page {
 
   constructor() {
     super();
-    this.api = new LoginAPI();
     this.services = new LoginServices();
   }
 

@@ -41,11 +41,6 @@
     "baseUrl": "src/",
     "skipLibCheck": true,
     "outDir": "./dist",
-    "paths": {
-      // "@components/*": [
-      //   "custom-components/*"
-      // ]
-    }
   },
   "include": [
     "src/**/*.ts",
