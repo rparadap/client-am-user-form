@@ -6,11 +6,9 @@ import { render } from 'solid-js/web';
 import FooterComponent from './footer-component';
 import HeadComponent from './head-component';
 import HeaderComponent from './header-component';
-import LoaderComponent from './loader-component';
 
 const HEADER_CUSTOM_ELEMENT = 'custom-header';
 const FOOTER_CUSTOM_ELEMENT = 'custom-footer';
-const LOADER_CUSTOM_ELEMENT = 'custom-loader';
 export class MainLayout {
   constructor() {
     this.init();
@@ -22,7 +20,6 @@ export class MainLayout {
       this.renderHead();
       this.renderHeader();
       this.renderFooter();
-      this.renderLoader();
     }
   }
 
@@ -48,13 +45,6 @@ export class MainLayout {
       FOOTER_CUSTOM_ELEMENT
     )[0];
     footerContainer && render(() => <FooterComponent />, footerContainer);
-  }
-
-  private renderLoader() {
-    const loaderContainer = document.getElementsByTagName(
-      LOADER_CUSTOM_ELEMENT
-    )[0];
-    loaderContainer && render(() => <LoaderComponent />, loaderContainer);
   }
 }
 new MainLayout();
