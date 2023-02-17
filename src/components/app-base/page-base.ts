@@ -4,7 +4,7 @@ import '../../vendors/flag-icon-css/css/flag-icon.min.css';
 import '../../vendors/css/vendor.bundle.base.css';
 import '../../css/vertical-layout-light/style.css';
 import '../../css/vertical-layout-light/scrollbar.css';
-
+import $ from 'jquery';
 import Swal from 'sweetalert2';
 
 export class Page {

@@ -2,6 +2,7 @@ import { isUserLoggedIn } from '../../shared/user-session-managment';
 import { Page } from '../../components/app-base/page-base';
 import { LoginServices } from './services';
 import $ from 'jquery';
+import { LoginAPI } from './api';
 
 const HOME_PATH = '../home/index.html';
 window.addEventListener('load', async () => {
@@ -14,6 +15,8 @@ window.addEventListener('load', async () => {
   }
 });
 export class LoginMain extends Page {
+  private api;
+
   public services;
 
   private username: string;
@@ -27,6 +30,7 @@ export class LoginMain extends Page {
   constructor() {
     super();
     this.services = new LoginServices();
+    this.api = new LoginAPI();
   }
 
   public async init() {
@@ -70,10 +74,16 @@ export class LoginMain extends Page {
       return;
     }
     try {
-      // TODO
+      const response = await this.api.validateUserCredentials({
+        identificationNumber: this.username,
+        password: this.password,
+      });
+      if (response.length <= 0) throw 'Invalid response data';
+      localStorage.setItem('user-local-data', response);
+      window.location.href = HOME_PATH;
     } catch (error) {
       localStorage.clear();
-      this.showErrorAlert({ errorMessage: 'Erorr al realizar login' });
+      this.showErrorAlert({ errorMessage: 'Error al realizar login' });
       this.logger(error);
     }
   }

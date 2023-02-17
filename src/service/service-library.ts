@@ -1,4 +1,4 @@
-export type APIService = 'user';
+export type APIService = 'RRHH-GSI-API';
 export type APIStages = 'prod' | 'stg' | 'dev';
 export type Service = {
   service: APIService;
@@ -11,8 +11,8 @@ type ServiceLibraryResource = {
 const productionServiceLibrary: ServiceLibraryResource[] = [];
 const developmentServiceLibrary: ServiceLibraryResource[] = [
   {
-    name: 'user',
-    url: 'https://s21e6lx64b.execute-api.us-east-1.amazonaws.com/dev/',
+    name: 'RRHH-GSI-API',
+    url: 'https://v435bvrqid.execute-api.us-east-1.amazonaws.com/DEV',
   },
 ];
 export const serviceLibrary = {
