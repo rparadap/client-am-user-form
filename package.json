@@ -33,16 +33,13 @@
     "vite-plugin-solid": "^2.5.0"
   },
   "dependencies": {
-    "@types/select2": "^4.0.57",
     "@vitejs/plugin-vue": "^4.0.0",
     "amazon-cognito-identity-js": "^6.1.1",
     "axios": "^1.2.1",
     "dotenv": "^16.0.3",
-    "dropify": "^0.2.2",
     "jquery": "^3.6.3",
     "moment": "^2.29.4",
     "sass": "^1.57.1",
-    "select2": "^4.1.0-rc.0",
     "solid-js": "^1.6.10",
     "sweetalert2": "^11.4.8",
     "tui-calendar": "^1.15.3",
