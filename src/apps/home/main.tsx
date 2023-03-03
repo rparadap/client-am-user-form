@@ -20,6 +20,7 @@ import moment from 'moment';
 window.addEventListener('load', async () => {
   const RegisterRequestPage = new Home();
   try {
+    RegisterRequestPage.initGlobalVar();
     RegisterRequestPage.showLoadingScreen();
     await RegisterRequestPage.renderComponents();
     await RegisterRequestPage.init();
@@ -118,6 +119,11 @@ export class Home extends Page {
     this.services = new HomeServices();
   }
 
+  async initGlobalVar() {
+    const localData = this.services.getLocalStorageItem('user-local-data');
+    this.formData = localData[0];
+  }
+
   async init() {
     this.divHourModalCourse = $('#divModal_horasCurso');
     this.divTypeCertified = $('#divModal_tipoAtestado');
@@ -202,11 +208,12 @@ export class Home extends Page {
   }
 
   async initServices() {
-    await this.getNacionalities();
-    await this.getProvinces();
-    await this.getCanton();
-    await this.getDistrict();
-    this.formData = await this.api.getFormData();
+    // this.formData = await this.api.getFormData();
+    await this.fillSelectsData();
+    await this.fillFormSections();
+  }
+
+  async fillFormSections() {
     await this.fillFormCertificatesSection(
       this.formData.colaboratorFormData.academicRecord
     );
@@ -222,6 +229,13 @@ export class Home extends Page {
     await this.fillDelincuenceLetterSection(
       this.formData.colaboratorFormData.delincuenceLetterRecord
     );
+  }
+
+  async fillSelectsData() {
+    await this.getNacionalities();
+    await this.getProvinces();
+    await this.getCanton();
+    await this.getDistrict();
   }
 
   async certificatesRowsEventListener(event: any) {

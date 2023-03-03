@@ -24,6 +24,7 @@ export type AxiosNacionalities = {
 };
 export type AxiosRegisterData = {
   colaboratorFormData: AxiosColaboratorFormData;
+  identificationNumber: string;
 };
 export type AxiosColaboratorFormData = {
   academicRecord: AxiosAcademicSection[];

@@ -320,4 +320,8 @@ export class HomeServices extends Services {
       reader.readAsDataURL(file);
     });
   }
+
+  getLocalStorageItem(id: string) {
+    return JSON.parse(localStorage.getItem(id) || '');
+  }
 }

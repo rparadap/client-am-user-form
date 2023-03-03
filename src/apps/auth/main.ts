@@ -79,7 +79,7 @@ export class LoginMain extends Page {
         password: this.password,
       });
       if (response.length <= 0) throw 'Invalid response data';
-      localStorage.setItem('user-local-data', response);
+      localStorage.setItem('user-local-data', JSON.stringify(response));
       window.location.href = HOME_PATH;
     } catch (error) {
       localStorage.clear();

@@ -597,7 +597,7 @@ const RegisterRequestDataView = (
               <div class="col-md-12">
                 <div style={{ 'text-align': 'center' }}>
                   <button
-                    type="submit"
+                    type="button"
                     class="btn btn-primary btn-sm"
                     onClick={() => {
                       props.onEdit.saveFormData(formData());
